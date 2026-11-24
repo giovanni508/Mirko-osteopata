@@ -93,6 +93,7 @@ Un solo carattere, Mona Sans: **stretto e pesante** è la tensione, **largo e le
 ## 6. Deploy
 
 - **GitHub Pages** (attivo): GitHub pubblica il branch `gh-pages` su `https://giovanni508.github.io/Mirko-osteopata/`. Non va toccato a mano: `.github/workflows/pages.yml` lo rigenera dalla cartella `public/` a ogni push su `main` che modifica `public/`. `public/.nojekyll` evita che GitHub rielabori i file. La funzione Conversions API qui non gira (serve Netlify).
+- **Hostinger** (Git in hPanel, o qualsiasi hosting Apache/LiteSpeed che copia tutto il repository): il `.htaccess` nella radice fa leggere il sito da `public/` e rende irraggiungibili documenti, foto degli annunci e `.git`. Va bene il branch `main`; in alternativa si può collegare il branch `gh-pages`, che contiene solo i file del sito.
 - **Netlify** (consigliato, collegato al repository GitHub): `netlify.toml` imposta già tutto (publish directory = `public`, funzioni in `netlify/functions`), nessun comando di build. In alternativa trascina **solo la cartella `public/`** su app.netlify.com/drop.
 - **Cloudflare Pages**: collega il repository con build command vuoto e build output directory = `public`, oppure carica solo la cartella `public/`. `_headers` viene letto automaticamente.
 - **Vercel**: importa il repository come sito statico (framework "Other") con Output Directory = `public`.
