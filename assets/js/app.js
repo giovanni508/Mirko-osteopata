@@ -69,6 +69,82 @@
   }
 
   /* ------------------------------------------------------------------
+     1b. Orari dello studio: settimana, giorno di oggi, aperto/chiuso ora
+         (sempre in ora italiana, ovunque si trovi chi guarda)
+     ------------------------------------------------------------------ */
+  function initHours() {
+    var H = CFG.hours;
+    if (!H || typeof H !== 'object') return;
+    var KEYS = ['lun', 'mar', 'mer', 'gio', 'ven', 'sab', 'dom'];
+    var NAMES = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+    var SHORT = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'];
+    function ranges(v) {
+      return String(v || '').split(',').map(function (r) {
+        var m = r.trim().match(/^(\d{1,2})[:.](\d{2})\s*[-–]\s*(\d{1,2})[:.](\d{2})$/);
+        return m ? [+m[1] * 60 + +m[2], +m[3] * 60 + +m[4]] : null;
+      }).filter(Boolean);
+    }
+    function hhmm(min) { var h = Math.floor(min / 60), m = min % 60; return h + ':' + (m < 10 ? '0' : '') + m; }
+    function label(rs) { return rs.length ? rs.map(function (r) { return hhmm(r[0]) + ' – ' + hhmm(r[1]); }).join(', ') : 'Chiuso'; }
+    var week = KEYS.map(function (k) { return ranges(H[k]); });
+
+    // giorno e ora in Italia
+    var today = -1, now = 0;
+    try {
+      var parts = new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+      var get = function (t) { var p = parts.filter(function (x) { return x.type === t; })[0]; return p ? p.value : ''; };
+      today = KEYS.indexOf(get('weekday').toLowerCase().replace('.', '').slice(0, 3));
+      now = (+get('hour') % 24) * 60 + +get('minute');
+    } catch (e) { var d = new Date(); today = (d.getDay() + 6) % 7; now = d.getHours() * 60 + d.getMinutes(); }
+
+    var list = qs('[data-hours]');
+    if (list) {
+      list.innerHTML = '';
+      week.forEach(function (rs, i) {
+        var li = doc.createElement('li');
+        li.className = 'hours__row' + (i === today ? ' is-today' : '') + (rs.length ? '' : ' is-closed');
+        var a = doc.createElement('span'); a.className = 'hours__day'; a.textContent = NAMES[i];
+        if (i === today) { var t = doc.createElement('span'); t.className = 'hours__today'; t.textContent = 'oggi'; a.appendChild(t); }
+        var b = doc.createElement('span'); b.className = 'hours__time'; b.textContent = label(rs);
+        li.appendChild(a); li.appendChild(b); list.appendChild(li);
+      });
+      list.setAttribute('data-stagger', '');
+    }
+
+    var status = qs('[data-hours-status]');
+    if (status && today >= 0) {
+      var open = null;
+      week[today].forEach(function (r) { if (now >= r[0] && now < r[1]) open = r; });
+      var txt;
+      if (open) {
+        txt = 'Aperto ora · chiude alle ' + hhmm(open[1]);
+      } else {
+        txt = 'Chiuso ora';
+        for (var k = 0; k < 8; k++) {
+          var di = (today + k) % 7;
+          var next = week[di].filter(function (r) { return k > 0 || r[0] > now; })[0];
+          if (next) { txt += ' · riapre ' + (k === 0 ? 'alle ' : k === 1 ? 'domani alle ' : NAMES[di].toLowerCase() + ' alle ') + hhmm(next[0]); break; }
+        }
+      }
+      status.textContent = txt;
+      status.classList.toggle('is-open', !!open);
+    }
+
+    // versione breve per il footer: giorni consecutivi con lo stesso orario raggruppati
+    var short = qs('[data-hours-short]');
+    if (short) {
+      var out = [], i = 0;
+      while (i < 7) {
+        var j = i;
+        while (j + 1 < 7 && label(week[j + 1]) === label(week[i])) j++;
+        out.push((j > i ? SHORT[i] + '–' + SHORT[j] : SHORT[i]) + ' ' + (week[i].length ? label(week[i]).replace(/ – /g, '–') : 'chiuso'));
+        i = j + 1;
+      }
+      short.textContent = out.join(' · ');
+    }
+  }
+
+  /* ------------------------------------------------------------------
      2. UTM / fbclid (sessionStorage, solo per questa sessione)
      ------------------------------------------------------------------ */
   var UTM = (function () {
@@ -1026,6 +1102,7 @@
      ------------------------------------------------------------------ */
   function boot() {
     applyConfig();
+    initHours();
     Track.init();
     initWhatsApp();
     initCalls();

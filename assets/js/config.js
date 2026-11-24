@@ -15,12 +15,27 @@ window.SITE_CONFIG = {
   /* Aggiunge in fondo al messaggio un riferimento breve alla campagna (utm_campaign / utm_source). */
   appendCampaignRef: true,
 
-  /* Telefono mostrato nel footer (formato leggibile, es. "+39 333 123 4567"). */
-  phone: "",
+  /* Telefono dello studio (formato leggibile). Mostra "Chiama lo studio" in hero, nella sezione Studio e nel footer. */
+  phone: "+39 351 995 9599",
 
-  /* Studio */
-  address: "",            // es. "Via Roma 1, 22078 Turate (CO)"
-  mapsUrl: "",            // link Google Maps dello studio
+  /* Studio (dati della scheda Google "Centro MediTherapy", novembre 2026) */
+  studioName: "Centro MediTherapy",
+  address: "Via Libertà 11, 22078 Turate (CO)",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Centro%20MediTherapy%2C%20Via%20Libert%C3%A0%2011%2C%2022078%20Turate%20CO",
+
+  /* Orari dello studio. Formato "HH:MM-HH:MM"; vuoto = chiuso.
+     Con pausa pranzo: "09:00-13:00, 14:30-21:00". La pagina mostra la settimana,
+     evidenzia il giorno di oggi e dice se lo studio è aperto ora (ora italiana). */
+  hours: {
+    lun: "09:00-21:00",
+    mar: "09:00-21:00",
+    mer: "09:00-21:00",
+    gio: "09:00-21:00",
+    ven: "09:00-21:00",
+    sab: "09:00-13:00",
+    dom: ""
+  },
+
   vat: "",                // P.IVA
   registration: "",       // es. "Iscritto al Registro degli Osteopati d'Italia (ROI) n. 0000"
   yearsExperience: "",    // es. "8 anni di esperienza"
