@@ -1,32 +1,28 @@
-# Pubblica la cartella public/ su GitHub Pages a ogni push su main.
-# Una tantum: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# A ogni push su main copia la cartella public/ nel branch gh-pages,
+# che GitHub Pages pubblica su https://giovanni508.github.io/Mirko-osteopata/
 name: Pubblica il sito
 
 on:
   push:
     branches: [main]
+    paths: ["public/**"]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  gh-pages:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
         with:
-          path: public
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          fetch-depth: 0
+      - name: Aggiorna il branch gh-pages con public/
+        run: |
+          git subtree split --prefix public -b gh-pages
+          git push --force origin gh-pages
