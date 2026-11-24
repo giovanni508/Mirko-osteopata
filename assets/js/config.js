@@ -6,7 +6,7 @@
 window.SITE_CONFIG = {
   /* WhatsApp: solo cifre, con prefisso internazionale, senza "+" (es. "393331234567").
      Se vuoto, il link apre WhatsApp chiedendo a chi scrivere. */
-  whatsappNumber: "",
+  whatsappNumber: "393519959599",
 
   /* Messaggio precompilato per tutti i pulsanti WhatsApp. */
   whatsappMessage:
