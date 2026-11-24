@@ -317,29 +317,56 @@ strong { font-weight: 620; }
   gap: 1rem;
   height: 100%;
 }
+/* Logo: la firma di Mirko (simbolo #i-sign) + ruolo */
 .wordmark {
   display: inline-flex;
-  align-items: center;
-  gap: .7rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: .12rem;
   min-height: 48px;
   text-decoration: none;
   line-height: 1.05;
 }
-.wordmark__mark { width: 30px; height: 30px; flex: none; }
-.wordmark__mark .wm-bg { fill: currentColor; }
-.wordmark__mark .wm-v rect { fill: var(--paper); transition: fill .45s var(--ease-q); }
-.site-header[data-tone="dark"] .wordmark__mark .wm-v rect { fill: var(--midnight); }
-.wordmark:hover .wm-v rect { transition: transform .6s var(--ease); }
-.motion .wordmark:hover .wm-v rect:nth-child(odd) { transform: translateX(1px); }
-.motion .wordmark:hover .wm-v rect:nth-child(even) { transform: translateX(-1px); }
-.wordmark__text { display: flex; flex-direction: column; }
-.wordmark__name { font-size: 1.0625rem; font-weight: 640; font-stretch: 108%; letter-spacing: -.03em; }
+.wordmark__sign,
+.sign__svg,
+.footer__sign {
+  display: block;
+  height: auto;
+  aspect-ratio: 1120 / 262;
+  overflow: visible;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-linejoin: round;
+}
+.wordmark__sign { width: 116px; stroke-width: 5; margin-left: -4px; }
 .wordmark__role {
-  margin-top: .18rem;
-  font-size: .75rem;
-  font-weight: 480;
+  font-size: .6875rem;
+  font-weight: 500;
   letter-spacing: .01em;
   opacity: .66;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .wordmark { flex-direction: row; align-items: center; gap: .9rem; }
+  .wordmark__sign { width: 136px; }
+  .wordmark__role { position: relative; padding-left: .9rem; font-size: .75rem; }
+  .wordmark__role::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: currentColor;
+    opacity: .45;
+  }
+}
+/* all'apertura la firma si scrive da sinistra a destra */
+.motion .wordmark__sign { animation: sign-write 1.8s var(--ease-io) .25s both; }
+@keyframes sign-write {
+  from { clip-path: inset(-30% 100% -30% 0); }
+  to { clip-path: inset(-30% -6% -30% 0); }
 }
 
 /* ---------- Navigazione ---------- */
@@ -1506,7 +1533,7 @@ html.menu-open .site-header::before { opacity: 1; background: var(--paper); -web
 .about__copy .lead { color: var(--ink); }
 /* Firma: si "scrive" da sinistra a destra quando entra in vista */
 .about__copy .sign { margin: 1.75rem 0 0; color: var(--ink); }
-.sign__svg { display: block; width: clamp(210px, 52vw, 300px); height: auto; overflow: visible; }
+.sign__svg { width: clamp(210px, 52vw, 300px); stroke-width: 2; }
 /* la maschera sta sull'SVG: il paragrafo resta osservabile dallo scroll */
 .motion .sign[data-reveal] { opacity: 1; translate: none; }
 .motion .sign[data-reveal] .sign__svg {
@@ -1764,8 +1791,9 @@ html.menu-open .site-header::before { opacity: 1; background: var(--paper); -web
 }
 .footer__grid { display: grid; gap: 1.5rem; }
 .footer__grid p { margin: 0; }
-.footer__name { color: var(--on-dark); font-size: 1.375rem; font-weight: 620; font-stretch: 108%; letter-spacing: -.03em; line-height: 1.1; }
-.footer__name span { font-size: .9375rem; font-weight: 400; font-stretch: 100%; color: var(--on-dark-2); letter-spacing: 0; }
+.footer__name { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; margin-bottom: .5rem !important; color: var(--on-dark); }
+.footer__sign { width: 190px; stroke-width: 4; margin-left: -6px; }
+.footer__name span { font-size: .875rem; color: var(--on-dark-2); }
 .footer__id { display: grid; gap: .4rem; }
 .footer__addr { display: flex; align-items: center; gap: .5rem; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }

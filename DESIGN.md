@@ -196,7 +196,7 @@ Rettangoli arrotondati, non pillole: 14px per pulsanti, 12px per chip e campi, 2
 - **Ghost:** trasparente con hairline 1.5px (banner cookie: Rifiuta e Accetta di pari peso).
 
 ### Header
-68px fisso: marchio (quadrato con quattro vertebre in curva) + "Mirko Rimoldi / Osteopata a Turate"; link centrati da 1100px con sottolineatura che si disegna; barra di avanzamento della lettura (2px) sul bordo inferiore. Trasparente in cima, vetro chiaro dopo lo scroll, vetro notte sopra le sezioni scure.
+68px fisso: **logo = la firma manoscritta di Mirko** (simbolo SVG `#i-sign`, colore `currentColor`, quindi inchiostro sui fondi chiari e bianca su quelli scuri; all'apertura si scrive da sinistra a destra) + "Osteopata a Turate" separato da una linea sottile (sotto la firma su telefono). La favicon resta il quadrato con le quattro vertebre, perché la firma a 16px non si leggerebbe; link centrati da 1100px con sottolineatura che si disegna; barra di avanzamento della lettura (2px) sul bordo inferiore. Trasparente in cima, vetro chiaro dopo lo scroll, vetro notte sopra le sezioni scure.
 
 ### Hero
 Copia a sinistra, ritratto scontornato a destra (sotto il testo su telefono) con alone azzurro e due anelli di precisione (uno si disegna, uno tratteggiato ruota lentissimo).
@@ -211,7 +211,7 @@ Schema, non dati: un contenitore che si riempie di quattro strati (postura, ore 
 Colonna SVG di 17 vertebre, cranio, clavicole e bacino resa come radiografia (contorni glow su notte, alone). Una linea di scansione scende con lo scroll, il punto di dolore compare quando la scansione lo attraversa, poi la colonna si riallinea mentre la notte diventa cobalto e poi carta; in luce la colonna diventa disegno a inchiostro e compaiono le cause.
 
 ### Chi sono: ritratto e firma
-Ritratto testa-spalle ricavato dallo scontornato della hero (stesso file, già in cache) su luce di studio azzurra, 4:5, angoli 28px; entra "accendendo le luci" (da scuro e desaturato a pieno) con uno zoom-out. Sotto il testo, la firma manoscritta in corsivo (SVG generato con Higgsfield, `assets/img/firma-mirko.svg`, inserita inline in colore ink) che si "scrive" da sinistra a destra quando entra in vista.
+Ritratto testa-spalle ricavato dallo scontornato della hero (stesso file, già in cache) su luce di studio azzurra, 4:5, angoli 28px; entra "accendendo le luci" (da scuro e desaturato a pieno) con uno zoom-out. Sotto il testo, la firma manoscritta in corsivo (SVG generato con Higgsfield, definita una sola volta come simbolo `#i-sign` nello sprite di `index.html` e riusata in header, Chi sono e footer; copia in `public/assets/img/firma-mirko.svg` per le pagine legali) che si "scrive" da sinistra a destra quando entra in vista.
 
 ### Inputs
 Fondo paper, hairline 1.5px, 12px, 52px. Focus: bianco, bordo cobalto, alone cobalto 16%. Errore #B42318 con messaggio; il focus va al primo errore.

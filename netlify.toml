@@ -1,0 +1,4 @@
+# Netlify: pubblica solo la cartella public/ (i file di lavoro restano fuori dal sito)
+[build]
+  publish = "public"
+  functions = "netlify/functions"

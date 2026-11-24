@@ -1,23 +1,29 @@
 # Landing "Regia clinica" · Mirko Rimoldi, Osteopata (Turate)
 
-Landing page di lead generation per Meta Ads, mobile-first. HTML + CSS + JavaScript vanilla, nessuna dipendenza esterna, nessun build: si carica la cartella così com'è su Netlify, Vercel o Cloudflare Pages.
+Landing page di lead generation per Meta Ads, mobile-first. HTML + CSS + JavaScript vanilla, nessuna dipendenza esterna, nessun build. **Il sito pubblico è solo la cartella `public/`**: tutto il resto (foto originali degli annunci, documenti di lavoro) resta fuori dal sito.
 
 ## Struttura
 
 ```
-index.html                 la pagina
-privacy.html               informativa privacy (BOZZA da validare)
-cookie-policy.html         cookie policy (BOZZA da validare)
-assets/js/config.js        ← l'unico file da toccare per i dati reali
-assets/js/app.js           interazioni, tracking, animazioni
-assets/css/styles.css      stile (token colore in cima al file)
-assets/fonts/              Mona Sans variabile, self-hosted (niente Google prima del consenso). I file Instrument Serif e Geist non sono più usati e si possono cancellare
-assets/img/                foto, favicon, immagine di condivisione (og.jpg)
-netlify/functions/         funzione opzionale per la Conversions API di Meta
-_headers                   cache e header di sicurezza (Netlify / Cloudflare Pages)
+public/                           ← IL SITO: solo questa cartella va online
+  index.html                      la pagina
+  privacy.html                    informativa privacy (BOZZA da validare)
+  cookie-policy.html              cookie policy (BOZZA da validare)
+  assets/js/config.js             ← l'unico file da toccare per i dati reali
+  assets/js/app.js                interazioni, tracking, animazioni
+  assets/css/styles.css           stile (token colore in cima al file)
+  assets/fonts/                   Mona Sans variabile, self-hosted (niente Google prima del consenso). I file Instrument Serif e Geist non sono più usati e si possono cancellare
+  assets/img/                     foto, firma, favicon, immagine di condivisione (og.jpg)
+  _headers                        cache e header di sicurezza (Netlify / Cloudflare Pages)
+  robots.txt
+netlify/functions/                funzione opzionale per la Conversions API di Meta
+netlify.toml                      dice a Netlify di pubblicare solo public/
+1q.png, 1r.png                    annunci originali (fonte delle foto), NON pubblici
+README.md, DESIGN.md, PRODUCT.md  documentazione di lavoro, NON pubblica
+.impeccable/                      dati del design system, NON pubblici
 ```
 
-## 1. Dati reali → `assets/js/config.js`
+## 1. Dati reali → `public/assets/js/config.js`
 
 Ogni campo vuoto nasconde da solo gli elementi che lo usano: la pagina non mostra mai segnaposto.
 
@@ -57,7 +63,7 @@ Voci del menu (desktop e mobile) in `index.html`, dentro `<nav class="nav">` e `
 
 - `assets/img/mirko-hero-desktop.webp` (830×1400, metà destra della hero su desktop) e `mirko-hero-mobile.webp` (700×875, sotto il testo su mobile): ricavate da `1r.png` togliendo testi e pulsante dell'ad; la spalla coperta dal pulsante è stata ricostruita.
 - "Chi sono" usa lo stesso scontornato della hero (`mirko-cutout.webp` / `mirko-cutout-m.webp`) inquadrato testa-spalle su sfondo azzurro: nessun file in più da scaricare. `mirko-avatar.webp` è il volto accanto al nome su mobile; `mirko-mani.webp` non è più usato.
-- `firma-mirko.svg`: firma manoscritta generata con Higgsfield (la stessa è inserita inline in `index.html`, sezione "Chi sono", per poterla colorare e animare).
+- `firma-mirko.svg`: firma manoscritta generata con Higgsfield. È anche il **logo del sito**: in `index.html` è definita una volta come simbolo `#i-sign` (nello sprite in cima alla pagina) e riusata in header, "Chi sono" e footer con `<use href="#i-sign"/>`; le pagine legali usano il file. La favicon resta il marchio con le vertebre.
 - Con foto nuove dello studio basta tenere gli stessi nomi file (WebP) e, se cambiano le proporzioni, aggiornare `width`/`height` nell'`<img>` / `<source>`.
 - `og.jpg` (1200×630) è l'anteprima quando il link viene condiviso.
 
@@ -85,11 +91,11 @@ Un solo carattere, Mona Sans: **stretto e pesante** è la tensione, **largo e le
 
 ## 6. Deploy
 
-- **Netlify**: trascina la cartella su app.netlify.com/drop, oppure collega il repository (nessun comando di build, publish directory = root).
-- **Cloudflare Pages**: nuovo progetto → upload della cartella. `_headers` viene letto automaticamente.
-- **Vercel**: importa la cartella come sito statico (framework "Other").
-- Da **non** caricare (servono solo in lavorazione): `1q.png`, `1r.png`, `PRODUCT.md`, `DESIGN.md`, `README.md`, le cartelle `.claude/` e `.impeccable/`.
-- Dopo la pubblicazione, in `index.html` sostituisci `og:image` con l'URL assoluto (`https://tuodominio/assets/img/og.jpg`) e verifica con il Debugger di condivisione di Meta.
+- **Netlify** (consigliato, collegato al repository GitHub): `netlify.toml` imposta già tutto (publish directory = `public`, funzioni in `netlify/functions`), nessun comando di build. In alternativa trascina **solo la cartella `public/`** su app.netlify.com/drop.
+- **Cloudflare Pages**: collega il repository con build command vuoto e build output directory = `public`, oppure carica solo la cartella `public/`. `_headers` viene letto automaticamente.
+- **Vercel**: importa il repository come sito statico (framework "Other") con Output Directory = `public`.
+- Le foto originali degli annunci, i documenti di lavoro e le cartelle `.claude/` e `.impeccable/` stanno fuori da `public/`: non finiscono mai online.
+- Dopo la pubblicazione, in `public/index.html` sostituisci `og:image` con l'URL assoluto (`https://tuodominio/assets/img/og.jpg`) e verifica con il Debugger di condivisione di Meta.
 
 ## 7. Prima di pubblicare (checklist)
 
