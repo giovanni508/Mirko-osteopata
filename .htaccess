@@ -1,0 +1,39 @@
+# Hostinger e altri hosting Apache/LiteSpeed che pubblicano tutto il repository:
+# il sito vero sta in public/. Qui lo serviamo come se fosse la radice e
+# rendiamo irraggiungibile tutto il resto (documenti di lavoro, foto annunci, .git).
+# Netlify, Cloudflare Pages e GitHub Pages pubblicano solo public/ e ignorano questo file.
+
+Options -Indexes
+DirectoryIndex index.html
+
+RewriteEngine On
+
+# File di lavoro e repository: vietati.
+RewriteRule ^(\.git|\.github|\.impeccable|netlify)(/|$) - [F,L]
+
+# Tutto il resto viene letto da public/ (vale anche se il sito sta in una sottocartella).
+RewriteCond %{REQUEST_URI} !/public/
+RewriteRule ^(.*)$ public/$1 [L]
+
+AddType font/woff2 .woff2
+AddType image/webp .webp
+
+# Stessi header di public/_headers (che Apache non legge).
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.woff2$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(webp|jpe?g|png|svg)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=86400, must-revalidate"
+  </FilesMatch>
+</IfModule>
