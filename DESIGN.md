@@ -213,6 +213,9 @@ Colonna SVG di 17 vertebre, cranio, clavicole e bacino resa come radiografia (co
 ### Chi sono: ritratto e firma
 Ritratto testa-spalle ricavato dallo scontornato della hero (stesso file, già in cache) su luce di studio azzurra, 4:5, angoli 28px; entra "accendendo le luci" (da scuro e desaturato a pieno) con uno zoom-out. Sotto il testo, la firma manoscritta in corsivo (SVG generato con Higgsfield, definita una sola volta come simbolo `#i-sign` nello sprite di `index.html` e riusata in header, Chi sono e footer; copia in `public/assets/img/firma-mirko.svg` per le pagine legali) che si "scrive" da sinistra a destra quando entra in vista.
 
+### Lo studio
+Sezione cloud prima del finale: a sinistra titolo ("Ti aspetto *in studio.*"), nome dello studio, indirizzo e telefono con icone cobalto, due pulsanti ghost (Google Maps, Chiama lo studio); a destra una card bianca con la settimana degli orari, il giorno di oggi evidenziato (fondo cloud, etichetta "oggi") e uno stato "Aperto ora / Chiuso ora" calcolato in ora italiana, con punto cobalto che pulsa quando è aperto. Tutto viene da `config.js`; nessuna mappa incorporata (niente terze parti prima del consenso).
+
 ### Inputs
 Fondo paper, hairline 1.5px, 12px, 52px. Focus: bianco, bordo cobalto, alone cobalto 16%. Errore #B42318 con messaggio; il focus va al primo errore.
 

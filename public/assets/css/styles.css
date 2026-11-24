@@ -1655,6 +1655,101 @@ html.menu-open .site-header::before { opacity: 1; background: var(--paper); -web
   .faq__grid .h2 { position: sticky; top: calc(var(--header-h) + 2rem); }
 }
 
+/* ---------- Lo studio: indirizzo, telefono, orari ---------- */
+.studio__grid { display: grid; gap: 2.5rem; align-items: start; }
+.studio__name {
+  margin: 1.5rem 0 .9rem;
+  font-size: clamp(1.25rem, 1.15rem + .5vw, 1.5rem);
+  font-weight: 620;
+  letter-spacing: -.026em;
+}
+.studio__line {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin: 0 0 .55rem;
+  color: var(--ink-2);
+}
+.studio__line .icon { color: var(--cobalt); }
+.studio__line a { color: var(--ink); }
+.studio__actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.75rem; }
+.hours {
+  padding: 1.5rem;
+  border-radius: var(--r-xl);
+  background: var(--white);
+  box-shadow: inset 0 0 0 1px var(--line), var(--shadow-1);
+}
+.hours__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line-2);
+}
+.hours__title { font-size: 1.125rem; font-weight: 620; letter-spacing: -.022em; }
+.hours__status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  background: var(--cloud);
+  color: var(--ink-2);
+  font-size: .8125rem;
+  font-weight: 560;
+}
+.hours__status:empty { display: none; }
+.hours__status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+.hours__status.is-open { background: rgba(30, 85, 179, .1); color: var(--cobalt); }
+.hours__status.is-open::before { background: var(--cobalt); box-shadow: 0 0 0 3px rgba(30, 85, 179, .18); }
+.motion .hours__status.is-open::before { animation: live 2.2s var(--ease-q) infinite; }
+@keyframes live {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(30, 85, 179, .18); }
+  50% { box-shadow: 0 0 0 6px rgba(30, 85, 179, 0); }
+}
+.hours__list { list-style: none; margin: .5rem 0 0; padding: 0; }
+.hours__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 -.75rem;
+  padding: .7rem .75rem;
+  border-radius: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.hours__row + .hours__row { background: linear-gradient(var(--line), var(--line)) 50% 0 / calc(100% - 1.5rem) 1px no-repeat; }
+.hours__day { display: inline-flex; align-items: baseline; gap: .5rem; color: var(--ink); font-weight: 520; }
+.hours__time { color: var(--ink-2); }
+.hours__row.is-closed .hours__time { color: var(--ink-3); }
+.hours__row.is-today { background: var(--cloud); }
+.hours__row.is-today + .hours__row { background: none; }
+.hours__row.is-today .hours__day,
+.hours__row.is-today .hours__time { color: var(--ink); font-weight: 640; }
+.hours__today {
+  font-size: .6875rem;
+  font-weight: 620;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+}
+.hours__note { margin: 1.1rem 0 0; color: var(--ink-2); font-size: .9375rem; }
+@media (max-width: 599px) { .studio__actions .btn { width: 100%; } }
+@media (min-width: 900px) {
+  .studio__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(3rem, 6vw, 6rem); align-items: center; }
+  .hours { padding: 2rem; }
+}
+.footer__studio { color: var(--on-dark); font-weight: 560; }
+
 /* ---------- CTA finale ---------- */
 .final {
   overflow: hidden;

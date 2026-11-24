@@ -31,8 +31,9 @@ Ogni campo vuoto nasconde da solo gli elementi che lo usano: la pagina non mostr
 |---|---|---|
 | `whatsappNumber` | solo cifre con prefisso, senza `+` (es. `393331234567`) | tutti i pulsanti WhatsApp e il form |
 | `whatsappMessage` | testo precompilato | messaggio dei pulsanti |
-| `phone` | numero leggibile | footer |
-| `address`, `mapsUrl` | indirizzo dello studio e link Google Maps | FAQ "Dove si trova", footer |
+| `phone` | numero leggibile (oggi: lo studio, +39 351 995 9599) | "Chiama lo studio" in hero e nella sezione Studio, footer |
+| `studioName`, `address`, `mapsUrl` | nome dello studio (Centro MediTherapy), indirizzo, link Google Maps | sezione "Lo studio", FAQ "Dove si trova", footer |
+| `hours` | orari per giorno, `"09:00-21:00"`, vuoto = chiuso, pausa con la virgola | sezione "Lo studio" (con giorno di oggi e "aperto ora" in ora italiana) e footer |
 | `vat`, `registration` | P.IVA, iscrizione ROI / titoli | footer, "Chi sono", privacy |
 | `yearsExperience` | es. "8 anni di esperienza" | pillole in "Chi sono" |
 | `sessionDuration`, `sessionPrice` | durata e prezzo | FAQ |
