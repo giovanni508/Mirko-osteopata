@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="it" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cookie policy · Mirko Rimoldi, Osteopata</title>
+<meta name="description" content="Quali cookie e strumenti di misurazione usa la pagina di Mirko Rimoldi, osteopata a Turate.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#F5F7FA">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body>
+<!-- BOZZA: testo generico da far validare da un consulente privacy prima della pubblicazione. -->
+<header class="site-header is-scrolled" data-header>
+  <div class="container site-header__inner">
+    <a class="wordmark" href="index.html" aria-label="Mirko Rimoldi, osteopata: torna alla pagina"><img class="wordmark__sign" src="assets/img/firma-mirko.svg" width="1120" height="262" alt=""><span class="wordmark__role">Osteopata a Turate</span></a>
+  </div>
+</header>
+<main class="legal">
+  <div class="container">
+    <a class="back link-quiet" href="index.html">Torna alla pagina</a>
+    <h1>Cookie policy</h1>
+    <p>Questa pagina usa pochissimi strumenti, e quelli di misurazione partono solo se li accetti.</p>
+
+    <h2>Strumenti tecnici (sempre attivi)</h2>
+    <ul>
+      <li><strong>mr_consent_v1</strong> (memoria locale del browser): ricorda la tua scelta sui cookie per 6 mesi.</li>
+      <li><strong>mr_utm</strong> (memoria di sessione): ricorda da quale campagna sei arrivato, solo finché tieni aperta la scheda, per indicarlo nel messaggio di prenotazione.</li>
+    </ul>
+
+    <h2>Misurazione e marketing (solo con consenso)</h2>
+    <ul>
+      <li><strong>Meta Pixel</strong> — Meta Platforms Ireland Ltd. Cookie <strong>_fbp</strong> e <strong>_fbc</strong>, durata fino a 90 giorni. Serve a misurare quante persone, arrivate dagli annunci, scelgono di contattarmi. Non vengono inviate a Meta informazioni sui tuoi dolori o sulla tua salute.</li>
+    </ul>
+
+    <h2>Come cambiare idea</h2>
+    <p>Puoi accettare o rifiutare in qualsiasi momento: <button type="button" class="linklike" data-cookie-settings hidden style="color: var(--ink); text-decoration-color: currentColor;">apri le preferenze cookie</button><span class="js-hide">usa il link “Gestisci cookie” in fondo alla pagina principale</span>. Puoi anche cancellare i cookie dalle impostazioni del browser.</p>
+
+    <p class="fineprint">Ultimo aggiornamento: ottobre 2026.</p>
+  </div>
+</main>
+
+<section class="consent-banner" data-consent role="region" aria-labelledby="consent-title" hidden>
+  <h2 class="consent-banner__title" id="consent-title">Cookie di misurazione</h2>
+  <p>Uso il Pixel di Meta solo per misurare le campagne pubblicitarie, e solo se acconsenti.</p>
+  <div class="consent-banner__actions">
+    <button type="button" class="btn btn--ink" data-consent-choice="denied">Rifiuta</button>
+    <button type="button" class="btn btn--ink" data-consent-choice="granted">Accetta</button>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var b = document.querySelector('[data-cookie-settings]');
+    var s = document.querySelector('.js-hide');
+    setTimeout(function () { if (b && !b.hidden && s) s.hidden = true; }, 0);
+  });
+</script>
+</body>
+</html>
