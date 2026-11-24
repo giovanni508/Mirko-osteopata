@@ -1,0 +1,7 @@
+# configurazione locale dell'editor/anteprima
+.claude/
+# anteprime e file temporanei
+anteprima-*.png
+node_modules/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T18:00:00+01:00",
+  "title": "Design System: Mirko Rimoldi · Osteopata",
+  "extensions": {
+    "colorMeta": {
+      "cobalt": { "role": "primary", "displayName": "Cobalt", "canonical": "#1E55B3", "tonalRamp": ["#0A1E42", "#0E3170", "#15428F", "#1E55B3", "#2765CC", "#5DA8E8", "#8CCBFF", "#E1E9F2"] },
+      "glow": { "role": "secondary", "displayName": "Glow", "canonical": "#8CCBFF" },
+      "azure": { "role": "secondary", "displayName": "Azure", "canonical": "#5DA8E8" },
+      "coral": { "role": "tertiary", "displayName": "Coral", "canonical": "#EE6B4D" },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#F5F7FA" },
+      "cloud": { "role": "neutral", "displayName": "Cloud", "canonical": "#ECF0F5" },
+      "mist": { "role": "neutral", "displayName": "Mist", "canonical": "#E1E9F2" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#0B1A2B" },
+      "midnight": { "role": "neutral", "displayName": "Midnight", "canonical": "#060F1A" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "H1 only; Mona Sans 640, tight tracking." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles; one part in Release inside <em>." },
+      "release": { "displayName": "Release", "purpose": "Wide (112%) light (300) cut: the relief part of titles, quote, session numbers." },
+      "title": { "displayName": "Title", "purpose": "Pillars, steps, paths (620)." },
+      "body": { "displayName": "Body", "purpose": "Reading text, 17–18px, 400." },
+      "label": { "displayName": "Label", "purpose": "Buttons, chips, labels (560)." },
+      "index": { "displayName": "Index", "purpose": "01–06 tabular indices inside components." }
+    },
+    "shadows": [
+      { "name": "shadow-1", "value": "0 1px 2px rgba(11,26,43,.06), 0 10px 24px -16px rgba(11,26,43,.24)", "purpose": "Path cards, chat bubble." },
+      { "name": "shadow-2", "value": "0 1px 2px rgba(11,26,43,.06), 0 28px 56px -28px rgba(11,26,43,.38)", "purpose": "Photos, hero tag, hovered cards." },
+      { "name": "action", "value": "0 1px 1px rgba(11,26,43,.16), 0 14px 28px -16px rgba(21,66,143,.7)", "purpose": "Primary buttons." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Reveals (expo out)." },
+      { "name": "ease-q", "value": "cubic-bezier(.25, 1, .5, 1)", "purpose": "State changes (quart out)." },
+      { "name": "ease-io", "value": "cubic-bezier(.65, 0, .35, 1)", "purpose": "Ambient scenes." },
+      { "name": "exhale", "value": "font-stretch 75%→100%, font-weight 820→600, 1.5s", "purpose": "Pain words in the hero title; release parts of section titles (84%→112%)." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "480px" },
+      { "name": "md", "value": "600px" },
+      { "name": "tablet", "value": "720px" },
+      { "name": "lg", "value": "900px" },
+      { "name": "xl", "value": "960px" },
+      { "name": "wide", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The call to action on light grounds: write to Mirko on WhatsApp.",
+      "html": "<button class=\"ds-btn-primary\">Prenota la visita gratuita</button>",
+      "css": ".ds-btn-primary{min-height:56px;padding:12px 24px;border:0;border-radius:14px;background:#1E55B3;color:#FCFDFE;font:560 17px/1.2 'Mona Sans',system-ui,sans-serif;letter-spacing:-.014em;box-shadow:0 1px 1px rgba(11,26,43,.16),0 14px 28px -16px rgba(21,66,143,.7);cursor:pointer;transition:background-color .35s cubic-bezier(.25,1,.5,1),transform .35s cubic-bezier(.25,1,.5,1)}.ds-btn-primary:hover{background:#15428F}.ds-btn-primary:focus-visible{outline:2px solid #1E55B3;outline-offset:3px}.ds-btn-primary:active{transform:scale(.98)}"
+    },
+    {
+      "name": "Light Button",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "The call to action on dark grounds.",
+      "html": "<div style=\"background:#060F1A;padding:24px\"><button class=\"ds-btn-light\">Parliamone su WhatsApp</button></div>",
+      "css": ".ds-btn-light{min-height:56px;padding:12px 24px;border:0;border-radius:14px;background:#FCFDFE;color:#0B1A2B;font:560 17px/1.2 'Mona Sans',system-ui,sans-serif;cursor:pointer;transition:background-color .3s}.ds-btn-light:hover{background:#E3ECF7}.ds-btn-light:focus-visible{outline:2px solid #8CCBFF;outline-offset:3px}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pick where it hurts; selected chips fill with Cobalt.",
+      "html": "<span class=\"ds-chip\">Schiena</span> <span class=\"ds-chip ds-chip--on\">Collo</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:46px;padding:0 16px;border-radius:12px;box-shadow:inset 0 0 0 1.5px rgba(11,26,43,.2);color:#0B1A2B;font:540 15px/1 'Mona Sans',system-ui,sans-serif;cursor:pointer}.ds-chip--on{background:#1E55B3;color:#FCFDFE;box-shadow:inset 0 0 0 1.5px #1E55B3}"
+    },
+    {
+      "name": "Pain Card",
+      "kind": "card",
+      "refersTo": "card-dark",
+      "description": "Straight, indexed; selecting it relaxes the phrase (light, wider) and adds it to the WhatsApp message.",
+      "html": "<div class=\"ds-pain\"><span>02</span><p>“A fine giornata ho il collo rigido come un sasso.”</p></div>",
+      "css": ".ds-pain{max-width:360px;padding:20px 22px;border-radius:20px;background:#0C1A2A;color:#EDF2F8;box-shadow:inset 0 0 0 1px rgba(237,242,248,.1)}.ds-pain span{font:560 13px 'Mona Sans',sans-serif;color:#9AADC0;font-variant-numeric:tabular-nums}.ds-pain p{margin:12px 0 0;font:520 22px/1.25 'Mona Sans',sans-serif;letter-spacing:-.024em;transition:font-weight .6s,font-stretch .6s}.ds-pain:hover p{font-weight:340;font-stretch:108%}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Regia clinica",
+    "overview": "Dal blocco al rilascio, girato come un film: luce di studio in apertura, notte cinematografica per il dolore, una radiografia scansionata che si riallinea, poi la luce. Professionale per disciplina (griglia, card dritte, hairline, indici tabellari, un solo carattere), cinematografico per regia del movimento.",
+    "keyCharacteristics": [
+      "Un solo carattere, Mona Sans variabile: stretto e pesante = tensione, largo e leggero = rilascio.",
+      "Colore a scala di sezione: luce di studio → notte → cobalto → luce.",
+      "Un'azione: cobalto sui fondi chiari, bianco sui fondi scuri.",
+      "Un solo corallo, solo per il punto di dolore."
+    ],
+    "rules": [
+      { "name": "The Neutral Door Rule", "body": "Il primo viewport resta luce di studio: paper, ink, il ritratto; il blu solo nella frase di rilascio, nel pulsante e negli anelli.", "section": "colors" },
+      { "name": "The One Coral Rule", "body": "Il corallo segna dove fa male e nient'altro.", "section": "colors" },
+      { "name": "The Exhale Rule", "body": "Ogni titolo mette in rilascio (largo e leggero) una sola parte; niente corsivo.", "section": "typography" },
+      { "name": "The No-Kicker Rule", "body": "Nessuna etichetta maiuscola spaziata sopra i titoli; gli indici stanno dentro i componenti.", "section": "typography" },
+      { "name": "The Hairline Rule", "body": "Bordi a 1px in inset; niente bande colorate laterali.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do mettere in rilascio una sola parte per titolo.",
+      "Do usare cobalto sui fondi chiari e bianco sui fondi scuri per le azioni.",
+      "Do cambiare colore per sezioni intere.",
+      "Do tenere ogni stato animato visibile di default senza .motion."
+    ],
+    "donts": [
+      "Don't reintrodurre serif corsivi, card ruotate, pillole o ripple.",
+      "Don't usare il corallo per testo o pulsanti.",
+      "Don't aggiungere etichette maiuscole spaziate sopra i titoli.",
+      "Don't inventare recensioni, numeri di pazienti o anni di esperienza."
+    ]
+  }
+}
