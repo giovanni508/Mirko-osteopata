@@ -624,10 +624,12 @@ html.menu-open .site-header::before { opacity: 1; background: var(--paper); -web
 .hero__rings { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .hero__rings circle { fill: none; stroke: rgba(30, 85, 179, .26); stroke-width: .22; }
 .hero__rings circle + circle { stroke: rgba(30, 85, 179, .2); stroke-dasharray: .5 1.6; }
-.hero__figure picture { position: absolute; left: 50%; bottom: 0; height: 100%; translate: -50% 0; }
+/* width: max-content: senza, con left:50% la foto riceverebbe solo metà larghezza e si schiaccerebbe */
+.hero__figure picture { position: absolute; left: 50%; bottom: 0; width: max-content; height: 100%; translate: -50% 0; }
 .hero__figure img {
   display: block;
   width: auto;
+  max-width: none;
   height: 100%;
   filter: drop-shadow(0 26px 34px rgba(11, 26, 43, .16));
 }
