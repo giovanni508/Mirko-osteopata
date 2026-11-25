@@ -97,6 +97,7 @@ Un solo carattere, Mona Sans: **stretto e pesante** è la tensione, **largo e le
 - **Netlify** (consigliato, collegato al repository GitHub): `netlify.toml` imposta già tutto (publish directory = `public`, funzioni in `netlify/functions`), nessun comando di build. In alternativa trascina **solo la cartella `public/`** su app.netlify.com/drop.
 - **Cloudflare Pages**: collega il repository con build command vuoto e build output directory = `public`, oppure carica solo la cartella `public/`. `_headers` viene letto automaticamente.
 - **Vercel**: importa il repository come sito statico (framework "Other") con Output Directory = `public`.
+- Quando cambi `styles.css`, `app.js` o `config.js`, aggiorna il numero `?v=` nei link delle tre pagine HTML (es. `?v=20261125` → data del giorno): i telefoni che hanno già visitato il sito scaricano subito la versione nuova invece di tenere quella in cache.
 - Le foto originali degli annunci, i documenti di lavoro e le cartelle `.claude/` e `.impeccable/` stanno fuori da `public/`: non finiscono mai online.
 - Dopo la pubblicazione, in `public/index.html` sostituisci `og:image` con l'URL assoluto (`https://tuodominio/assets/img/og.jpg`) e verifica con il Debugger di condivisione di Meta.
 
